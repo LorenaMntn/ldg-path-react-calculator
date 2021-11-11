@@ -7,42 +7,71 @@ import './app.css'
 function App() {
 
   const [initialValue, setInitalValue] = useState('0');
-  const [newValue, setNewValue] = useState('');
-  const [operator, setOperator] = useState('');
+  const [newValue, setNewValue] = useState('0');
+  const [operator, setOperator] = useState(null);
 
-  const clearHandle = () => {
-    setInitalValue('0');
-    setNewValue('0');
-    setOperator('');
+  const clearHandle = () => setInitalValue('0');
+
+  const percentageCalc = () => setInitalValue(String(initialValue / Math.pow(10, 2)));
+
+  const signHandle = () => {
+    setInitalValue(initialValue > 0 ? `-${initialValue}` : `${initialValue.substring(1)}`);
   }
 
-  function operatorHandle (e) {
-    setOperator(e.target.value);
+  const setDecimal = () => {
+    if (!initialValue.toString().includes(".")) {
+      setInitalValue(initialValue.toString() + ".");
+    }
   }
 
-  const percentageCalc = () => {
-    console.log(initialValue);
-    return setInitalValue(String(Number(initialValue) / 100))
-  };
-
-  function resultHandle() {
-      switch (operator) {
-        case "+":
-          setNewValue(Number(initialValue) + Number(newValue));
+  function resultHandle() {  
+    switch (operator) {
+      case "+":
+          console.log(operator) 
+          setInitalValue(String(parseInt(newValue) + parseInt(initialValue)));
           break;
         case "-":
-          setNewValue(Number(initialValue) - Number(newValue));
+          setInitalValue(String(parseInt(newValue) - parseInt(initialValue)));
           break;
         case "/":
-          setNewValue(Number(initialValue) / Number(newValue));
+          setInitalValue(String(parseInt(newValue) / parseInt(initialValue)));
           break;
         case "x":
-          setInitalValue(Number(initialValue) * Number(newValue));
+          setInitalValue(String(parseInt(newValue) * parseInt(initialValue)));
           break;
         default:
           break;
       }
   }
+
+  const operatorHandle = (e) => {
+    switch(e.target.value) {
+      case "+":
+        resultHandle();
+        setOperator("+");
+        break;
+      case "-":
+        resultHandle();
+        setOperator("-");
+        break;
+      case "/":
+        resultHandle();
+        setOperator("/");
+
+        break;
+      case "x":
+        resultHandle();
+        setOperator("x");
+        break;
+      default:
+        return;
+    }
+  }
+
+  const getResult = () => {
+    resultHandle();
+    setOperator("");
+  };
 
   function handleChange(e){
     let newValue = e.target.value;
@@ -51,29 +80,34 @@ function App() {
       setInitalValue (prevItems => {
         return [...prevItems, newValue];
       });
+      setNewValue(initialValue)
     }
     else{
         setInitalValue (() => {
           return [...newValue];
         });
-        setOperator('');
+        setNewValue(initialValue)
     }
 
-    if(e.target.value === '%') return percentageCalc();
     if(e.target.value === 'AC') return clearHandle();
-    if(e.target.value === '=') return resultHandle();
-
+    if(e.target.value === '%') return percentageCalc();
+    if(e.target.value === 'sign') return signHandle();
+    if(e.target.value === '=') return resultHandle(newValue);
+    if(e.target.value === '.') return setDecimal();
   }
 
   return (
     <div>
       <main>
-        <Screen value={initialValue}/>
+        <Screen value={initialValue} />
         <Buttons 
           numberClick={handleChange} 
-          operatorClick={operatorHandle}
           resetClick = {clearHandle}
-          resultClick = {resultHandle}
+          percentageClick = {percentageCalc}
+          operatorClick = {operatorHandle}
+          resultClick = {getResult}
+          signClick = {signHandle}
+          decimalClick = {setDecimal}
           />
       </main>
     </div>

@@ -6,8 +6,8 @@ function Buttons (props) {
         <div>
             <section className="action-buttons">
                 <button className="reset" onClick={props.resetClick} value={'AC'}>AC</button>
-                <button className="negate">+/-</button>
-                <button className="percentage" onClick={props.operatorClick} value={'%'}>%</button>
+                <button className="negate" onClick={props.signClick} value={'sign'}>+/-</button>
+                <button className="percentage" onClick={props.percentageClick} value={'%'}>%</button>
                 <button className="divide" onClick={props.operatorClick} value={"/"}>/</button>
                 <button onClick={props.numberClick} value={'7'}>7</button>    
                 <button onClick={props.numberClick} value={'8'}>8</button>        
@@ -22,7 +22,7 @@ function Buttons (props) {
                 <button onClick={props.numberClick} value={'3'}>3</button>        
                 <button className="add" onClick={props.operatorClick} value={"+"}>+</button>
                 <button className="btn-zero" onClick={props.numberClick} value={"0"}>0</button>        
-                <button value={"."}>.</button>        
+                <button onClick={props.decimalClick} value={"."}>.</button>        
                 <button className="result" onClick={props.resultClick} value={'='}>=</button>    
         </section>
         </div>
