@@ -1,0 +1,53 @@
+.action-buttons {
+  height: 258px;
+  width: 100%;
+  display: grid;
+  grid-gap: 1px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  background-color: #282c31;
+  border-radius: 10px;
+}
+
+button {
+  border-radius: 1px;
+  border: none;
+  font-size: 25px;
+  color: #e7e7e8;
+  background-color: #5d5f64;
+}
+
+button:active {
+  background-color: rgb(109, 111, 116);
+}
+
+button:nth-child(4n),
+button:nth-child(19) {
+  background-color: #f2a23c;
+}
+
+button:nth-child(19) {
+  border-bottom-right-radius: 10px;
+}
+
+button:nth-child(4n):active,
+button:nth-child(19):active {
+  background-color: #f0b569;
+}
+
+button:nth-child(17) {
+  grid-area: 5/1/6/3;
+  border-bottom-left-radius: 10px;
+}
+
+button:nth-child(1),
+button:nth-child(2),
+button:nth-child(3) {
+  background-color: #3d3f45;
+}
+
+button:nth-child(1):active,
+button:nth-child(2):active,
+button:nth-child(3):active {
+  background-color: #494c53;
+}

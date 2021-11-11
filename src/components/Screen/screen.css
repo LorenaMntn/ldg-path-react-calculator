@@ -1,0 +1,40 @@
+.screen-btn {
+  display: flex;
+  padding: 6px 5px;
+}
+
+.btn {
+  height: 12px;
+  width: 12px;
+  margin: 2px 4px 0;
+  border-radius: 50%;
+}
+
+.btn > span {
+  visibility: hidden;
+}
+
+.btn > span:hover {
+  visibility: visible;
+  text-align: center;
+  font-size: 10px;
+}
+
+.screen-1 {
+  background-color: #ed6a5e;
+}
+
+.screen-2 {
+  background-color: #f5bd4f;
+}
+
+.screen-3 {
+  background-color: #62c354;
+}
+
+.screen-value {
+  color: white;
+  text-align: right;
+  font-size: 40px;
+  padding: 10px 15px;
+}
